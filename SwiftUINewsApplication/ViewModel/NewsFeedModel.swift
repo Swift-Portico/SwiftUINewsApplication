@@ -53,7 +53,7 @@ class NewsFeed: ObservableObject, RandomAccessCollection {
                 return true
             }
         }
-
+        
         return false
     }
     
@@ -81,41 +81,34 @@ class NewsFeed: ObservableObject, RandomAccessCollection {
     }
     
     private func parseArticlesFromData(data: Data) -> [NewsListItem]? {
-        let jsonObject  = try! JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-        let topLevelMap = jsonObject as! [String: Any]
-        guard let status = topLevelMap["status"] as? String else {
-            print("*** Status was not OK***")
+        var response: NewsResponseAPI!
+        do {
+            response = try JSONDecoder().decode(NewsResponseAPI.self, from: data)
+        }catch {
+            print("***Unable to decode JSON***")
+        }
+        
+        if(response.status != "ok"){
+            print("Status was not ok:\(response.status!)")
             return nil
         }
-        if(status == "ok"){
-            if let articles = topLevelMap["articles"] as? [[String: Any]] {
-                var newArticles = [NewsListItem]()
-                for article in articles {
-                    guard let author = article["author"] as? String else{
-                        continue
-                    }
-                    
-                    guard let title = article["title"] as? String else {
-                        continue
-                    }
-                    newArticles.append(NewsListItem.init(author: author, title: title))
-                }
-                return newArticles
-            }
-        }
-        return nil
+        return response.articles ?? [NewsListItem]()
     }
     
 }
 
-class NewsListItem: Identifiable {
+struct NewsResponseAPI: Codable {
+    var status: String?
+    var articles: [NewsListItem]?
+}
+
+struct NewsListItem: Codable,Identifiable {
     var id = UUID()
-    var author: String
-    var title: String
+    var author: String?
+    var title: String?
     
-    init(id: UUID = UUID(), author: String, title: String) {
-        self.id = id
-        self.author = author
-        self.title = title
+    enum CodingKeys: String, CodingKey{
+        case author
+        case title
     }
 }

@@ -15,7 +15,6 @@ struct NewsFeedView: View {
         List(newsFeed){ (article: NewsListItem) in
             NewsFeedListView.init(article: article)
                 .onAppear {
-                    let _ = print("On Appear called: \(article.id)")
                     newsFeed.loadMoreArticles(currentItem: article)
                 }
         }
@@ -26,9 +25,9 @@ struct NewsFeedListView: View {
     var article: NewsListItem
     var body: some View{
         VStack(alignment: .leading) {
-            Text("\(article.title)")
+            Text("\(article.title ?? "---")")
                 .font(.headline)
-            Text("\(article.author)")
+            Text("\(article.author ?? "No Author")")
                 .font(.subheadline)
         }
         .padding()
