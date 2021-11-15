@@ -17,11 +17,13 @@ struct NewsListItem: Codable,Identifiable {
     var author: String?
     var title: String?
     var urlToImage: String?
+    var url: String?
     
     enum CodingKeys: String, CodingKey{
         case author
         case title
         case urlToImage
+        case url
     }
 }
 

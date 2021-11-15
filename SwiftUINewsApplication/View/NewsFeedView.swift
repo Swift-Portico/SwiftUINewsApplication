@@ -12,11 +12,28 @@ struct NewsFeedView: View {
     @ObservedObject var newsFeedVM = NewsFeedViewModel()
     
     var body: some View {
-        List(newsFeedVM){ (article: NewsListItem) in
-            NewsFeedListView.init(article: article)
-                .onAppear {
-                    newsFeedVM.loadMoreArticles(currentItem: article)
+        NavigationView {
+            List(newsFeedVM){ (article: NewsListItem) in
+                NavigationLink.init(destination: NewsFeedURLView.init(article: article)){
+                    NewsFeedListView.init(article: article)
+                        .onAppear {
+                            newsFeedVM.loadMoreArticles(currentItem: article)
+                        }
                 }
+            }
+            .navigationBarTitle("News Feed")
+        }
+    }
+}
+
+struct NewsFeedURLView: View {
+    var article: NewsListItem
+    var body: some View {
+        ZStack{
+            if(article.url != nil){
+                NewsFeedWebView.init(urlToDispaly: URL(string: article.url!)!)
+                    .navigationTitle(article.title!)
+            }
         }
     }
 }

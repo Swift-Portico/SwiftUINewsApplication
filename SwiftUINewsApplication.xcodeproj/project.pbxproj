@@ -17,6 +17,7 @@
 		6ABDF340274286CE001B4C4B /* URLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABDF33F274286CE001B4C4B /* URLImageView.swift */; };
 		6ABDF342274286DB001B4C4B /* URLImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABDF341274286DB001B4C4B /* URLImageViewModel.swift */; };
 		6ABDF344274289C8001B4C4B /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABDF343274289C7001B4C4B /* ImageCache.swift */; };
+		6ABDF3462742CA0E001B4C4B /* NewsFeedWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABDF3452742CA0E001B4C4B /* NewsFeedWebView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		6ABDF33F274286CE001B4C4B /* URLImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImageView.swift; sourceTree = "<group>"; };
 		6ABDF341274286DB001B4C4B /* URLImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = URLImageViewModel.swift; path = SwiftUINewsApplication/ViewModel/URLImageViewModel.swift; sourceTree = SOURCE_ROOT; };
 		6ABDF343274289C7001B4C4B /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		6ABDF3452742CA0E001B4C4B /* NewsFeedWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedWebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			children = (
 				6ABDF33B27421B89001B4C4B /* NewsFeedView.swift */,
 				6ABDF33F274286CE001B4C4B /* URLImageView.swift */,
+				6ABDF3452742CA0E001B4C4B /* NewsFeedWebView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6ABDF32727420DD6001B4C4B /* ContentView.swift in Sources */,
+				6ABDF3462742CA0E001B4C4B /* NewsFeedWebView.swift in Sources */,
 				6ABDF33C27421B89001B4C4B /* NewsFeedView.swift in Sources */,
 				6ABDF344274289C8001B4C4B /* ImageCache.swift in Sources */,
 				6ABDF340274286CE001B4C4B /* URLImageView.swift in Sources */,
