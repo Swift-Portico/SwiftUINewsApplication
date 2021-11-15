@@ -9,13 +9,13 @@ import SwiftUI
 
 struct NewsFeedView: View {
     
-    @ObservedObject var newsFeed = NewsFeed()
+    @ObservedObject var newsFeedVM = NewsFeedViewModel()
     
     var body: some View {
-        List(newsFeed){ (article: NewsListItem) in
+        List(newsFeedVM){ (article: NewsListItem) in
             NewsFeedListView.init(article: article)
                 .onAppear {
-                    newsFeed.loadMoreArticles(currentItem: article)
+                    newsFeedVM.loadMoreArticles(currentItem: article)
                 }
         }
     }
@@ -23,14 +23,17 @@ struct NewsFeedView: View {
 
 struct NewsFeedListView: View {
     var article: NewsListItem
-    var body: some View{
-        VStack(alignment: .leading) {
-            Text("\(article.title ?? "---")")
-                .font(.headline)
-            Text("\(article.author ?? "No Author")")
-                .font(.subheadline)
+    var body: some View {
+        HStack {
+            URLImageView(urlString: article.urlToImage)
+            VStack(alignment: .leading) {
+                Text("\(article.title ?? "---")")
+                    .font(.headline)
+                Text("\(article.author ?? "No Author")")
+                    .font(.subheadline)
+            }
+            .padding()
         }
-        .padding()
     }
 }
 

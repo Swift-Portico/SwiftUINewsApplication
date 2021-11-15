@@ -1,5 +1,5 @@
 //
-//  NewsFeedModel.swift
+//  NewsFeedViewModel.swift
 //  SwiftUINewsApplication
 //
 //  Created by Pradeep's Macbook on 15/11/21.
@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-class NewsFeed: ObservableObject, RandomAccessCollection {
+class NewsFeedViewModel: ObservableObject, RandomAccessCollection {
+    
     typealias Element = NewsListItem
     
     @Published var newsListItem = [NewsListItem]()
@@ -39,6 +40,9 @@ class NewsFeed: ObservableObject, RandomAccessCollection {
         let task = URLSession.shared.dataTask(with: url, completionHandler: parseArticlesFromResponse)
         task.resume()
     }
+}
+
+extension NewsFeedViewModel {
     
     private func shouldLoadMoreData(currentItem: NewsListItem? = nil) -> Bool {
         if(isCurrentlyProcessing){
@@ -93,22 +97,5 @@ class NewsFeed: ObservableObject, RandomAccessCollection {
             return nil
         }
         return response.articles ?? [NewsListItem]()
-    }
-    
-}
-
-struct NewsResponseAPI: Codable {
-    var status: String?
-    var articles: [NewsListItem]?
-}
-
-struct NewsListItem: Codable,Identifiable {
-    var id = UUID()
-    var author: String?
-    var title: String?
-    
-    enum CodingKeys: String, CodingKey{
-        case author
-        case title
     }
 }

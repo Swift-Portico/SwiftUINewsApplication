@@ -11,7 +11,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView{
             NewsFeedView()
-                .navigationTitle("News Stories")
+                .navigationTitle("News Feed")
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
